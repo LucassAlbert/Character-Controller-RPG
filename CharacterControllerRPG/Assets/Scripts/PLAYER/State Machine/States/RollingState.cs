@@ -45,7 +45,7 @@ public class RollingState : IState
     {
         _playerController._Rigidbody.AddForce(Physics.gravity * 2, ForceMode.Acceleration);
 
-        Vector3 movement = _playerController._MyTransform.forward * 120 * Time.deltaTime;
+        Vector3 movement = _playerController._MyTransform.forward * 40 * Time.deltaTime;
         _playerController._Rigidbody.AddForce(movement,ForceMode.VelocityChange);     
     }
 

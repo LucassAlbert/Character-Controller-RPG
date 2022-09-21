@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-
 public class PlayerStatesController : MonoBehaviour
 {
     #region --------------- Variables ---------------
@@ -18,7 +17,7 @@ public class PlayerStatesController : MonoBehaviour
     private StateMachine stateMachine = new StateMachine();
 
 
-    public enum States { Idle, Walk, Rolling, Backstep, Sprint, Attack, Falling, Block, Ghost, Dead };
+    public enum States { Idle, Walk, Rolling, Backstep, Sprint, Attack, Falling, Block, Dead };
     public States CurrentState{   get; set;   }
 
     [SerializeField] private Transform feet_pos;
@@ -36,9 +35,6 @@ public class PlayerStatesController : MonoBehaviour
     [SerializeField] private GameObject Sheath;
     [SerializeField] private ParticleSystem _swordParticleEffect;
 
-    [Header("Controller Passos")]
-    [SerializeField] private AudioSource _audioPassos;
-
     #endregion
 
 
@@ -54,12 +50,11 @@ public class PlayerStatesController : MonoBehaviour
         _MyTransform   = transform                     ;
         //Estado Inicial
         stateMachine.ChangeState(new IdleState(this))  ;
-        CurrentState = States.Idle;
+        CurrentState   = States.Idle;
     }
 
     void Update()
     {
-        SoundStepsController();
         HandlerStates();
         CallDeadState();
 
@@ -106,17 +101,17 @@ public class PlayerStatesController : MonoBehaviour
         }
     }
 
-    public bool inground(){   return Physics.CheckBox(feet_pos.position, new Vector3(0.3f, .55f, 0.3f), Quaternion.identity, ground); }
+    public bool inground(){   return Physics.CheckBox(feet_pos.position, new Vector3(.15f, .5f, 0.15f), Quaternion.identity, ground); }
 
-    public void ControllerSword(bool value)
-    {
-        Sword.SetActive(value)   ; //Ativar Espada da Mao
-        Sheath.SetActive(!value) ; //Desativar Espada da Bainha
-    }
+    // public void ControllerSword(bool value)
+    // {
+    //     Sword.SetActive(value)   ; //Ativar Espada da Mao
+    //     Sheath.SetActive(!value) ; //Desativar Espada da Bainha
+    // }
 
-    public void ParticleSwordEffect()   =>  _swordParticleEffect.Play();
+    //public void ParticleSwordEffect()   =>  _swordParticleEffect.Play();
 
-    public bool  DustActive()       {   return (CurrentState == States.Walk || CurrentState == States.Sprint);       }
+    //public bool  DustActive()       {   return (CurrentState == States.Walk || CurrentState == States.Sprint);       }
 
     //public float getValueMovement() {   return  100 + 3 * gameController.getSkill(0);                                }
 
@@ -128,10 +123,9 @@ public class PlayerStatesController : MonoBehaviour
         if( _InputHandler.AttackInput())//Botao "B" Atacar
              if(CurrentState != States.Attack)  stateMachine.ChangeState(new AttackState(this));
 
-        if( _InputHandler.BlockInput())//Botao "Y" Block
+        if( _InputHandler.BlockInput())//Botao "Y" Bloquear
              if(CurrentState != States.Block)  stateMachine.ChangeState(new BlockState(this));
     }
-
 
     private void CallDeadState()
     {
@@ -150,17 +144,6 @@ public class PlayerStatesController : MonoBehaviour
         }
     }
 
-    private void SoundStepsController()
-    {
-        if(CurrentState == States.Walk || CurrentState == States.Sprint)
-        {
-            _audioPassos.pitch = (CurrentState == States.Walk)?0.65f : 1.5f ;
-            if(((_InputHandler.moveAmount > 0 )))  _audioPassos.UnPause()   ; 
-        }
-        else                                                            
-            _audioPassos.Pause();
-    }
-
     #region ---------- Debug ----------
     void OnDrawGizmos()//desenha o inground(box de colisao)
     {
@@ -168,7 +151,7 @@ public class PlayerStatesController : MonoBehaviour
         else            {   Gizmos.color = Color.red;     }
         
         //Desenhar colisão que fica de baixo do jogador;
-        Gizmos.DrawCube(feet_pos.position, new Vector3(.3f, 1f, 0.3f));
+        Gizmos.DrawCube(feet_pos.position, new Vector3(.15f, .5f, 0.15f));
     }
     #endregion
 }

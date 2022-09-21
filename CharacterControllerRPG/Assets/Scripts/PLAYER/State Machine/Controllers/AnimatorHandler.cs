@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class AnimatorHandler : MonoBehaviour
@@ -9,6 +9,5 @@ public class AnimatorHandler : MonoBehaviour
     public void setAnimator(int index)                  =>  _animator.SetInteger("Value",index);
     
     public void ChangeAnimationState(string newState)  =>   _animator.Play(newState);
-    
     
 }

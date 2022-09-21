@@ -26,8 +26,8 @@ public class MovementState : IState
     {   
         ChangeState();
 
-        movementDirection   =  _playerController._InputHandler.smoothInputMovement    ;
-        movementSpeed       =  _inSprint /* * _playerController.getValueMovement() */ ;
+        movementDirection   =  _playerController._InputHandler.smoothInputMovement ;
+        movementSpeed       =  _inSprint * 90                                      ;
     }
     public void ExecuteFixedUpdate()
     { 

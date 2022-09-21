@@ -18,7 +18,6 @@ public class AttackState : IState
 
     #endregion
 
-
     public void Enter()
     {
         _playerController.CurrentState = PlayerStatesController.States.Attack;
@@ -27,9 +26,9 @@ public class AttackState : IState
         _timer = 0.0f;
         _playerController.inAction = true;
         _playerController._AnimatorHandler.setAnimator(6); 
-        _playerController.ControllerSword(true);
+        //_playerController.ControllerSword(true);
         //_playerController.ParticleSwordEffect();
-        _playerController.Invoke("ParticleSwordEffect",.35f);
+        //_playerController.Invoke("ParticleSwordEffect",.35f);
 
         //Controle de Direcao Obs = talvez por em enter 
         _movementDirection   = _playerController._InputHandler.smoothInputMovement;
@@ -46,7 +45,7 @@ public class AttackState : IState
     public void Exit()              
     {   
         //_playerController._AnimatorHandler.ChangeAnimationState("Idle");
-        _playerController.ControllerSword(false);
+        //_playerController.ControllerSword(false);
     }
 
     void MoveThePlayer()
