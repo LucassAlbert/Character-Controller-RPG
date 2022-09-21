@@ -1,0 +1,96 @@
+{
+    "name": "Camera",
+    "maps": [
+        {
+            "name": "Camera_Input",
+            "id": "dad59ae7-1c90-4e2f-ae5b-760beddd18a3",
+            "actions": [
+                {
+                    "name": "Girar",
+                    "type": "PassThrough",
+                    "id": "b9dad9fb-2247-4143-af8d-5b8be09f8338",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "GirarControle",
+                    "type": "PassThrough",
+                    "id": "fae278bb-9817-4782-9be0-d0723b9673fd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6b372617-2733-4f24-b95e-88e549fea513",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Girar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "controler",
+                    "id": "d1d1d913-eb38-4159-b3bb-47b0b3e0db89",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Girar",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "89f4e6e8-5647-4889-af63-bccc9ab93e77",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Girar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6433c2cf-fc42-4c43-903b-f2b39de6a1c5",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Girar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "81396b6e-b429-4931-8466-0cea177fd3bf",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GirarControle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8638154b-4cdd-4a12-b030-f8fb039a237d",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GirarControle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

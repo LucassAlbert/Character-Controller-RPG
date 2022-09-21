@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using StateMachinePlayerController;
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
 
 
 public class PlayerStatesController : MonoBehaviour
