@@ -32,12 +32,12 @@ public class RollingState : IState
     
     public void ExecuteUpdate()
     { 
-        Timer(0.8f);
+        Timer(.9f);
         //Controlle de Gravidade
         //forceGravit = (_playerController.inground()) ? 2 : 12;
     }      
     
-    public void ExecuteFixedUpdate(){   if(_timer < 0.7f) MoveThePlayer();     }    
+    public void ExecuteFixedUpdate(){   if(_timer > 0.15f && _timer < 0.75f ) MoveThePlayer();     }    
    
     public void Exit() { /*Content*/ }
 
@@ -45,7 +45,7 @@ public class RollingState : IState
     {
         _playerController._Rigidbody.AddForce(Physics.gravity * 2, ForceMode.Acceleration);
 
-        Vector3 movement = _playerController._MyTransform.forward * 40 * Time.deltaTime;
+        Vector3 movement = _playerController._MyTransform.forward * 70 * Time.deltaTime;
         _playerController._Rigidbody.AddForce(movement,ForceMode.VelocityChange);     
     }
 

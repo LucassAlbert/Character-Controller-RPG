@@ -11,13 +11,12 @@ public class PlayerStatesController : MonoBehaviour
     [field : SerializeField] public  Rigidbody       _Rigidbody       {  get; set;   }
     [field : SerializeField] public  InputHandler    _InputHandler    {  get; set;   }
     [field : SerializeField] public  AnimatorHandler _AnimatorHandler {  get; set;   }
-                             //private GameController   gameController;
 
     [Header("State Machine")]
     private StateMachine stateMachine = new StateMachine();
 
 
-    public enum States { Idle, Walk, Rolling, Backstep, Sprint, Attack, Falling, Block, Dead };
+    public enum States { Idle, Walk, Rolling, Sprint, Attack, Falling, Block, Dead };
     public States CurrentState{   get; set;   }
 
     [SerializeField] private Transform feet_pos;
@@ -30,24 +29,19 @@ public class PlayerStatesController : MonoBehaviour
     [SerializeField] public bool inMove;
     [SerializeField] public static bool isDead;
 
-    [Header("Controller Sword")]
-    [SerializeField] private GameObject Sword;
-    [SerializeField] private GameObject Sheath;
-    [SerializeField] private ParticleSystem _swordParticleEffect;
-
     #endregion
-
 
     void Start()
     {
+        Application.targetFrameRate = 60;
+
         _timerDead     = 0.0f ;
         auxContador    = true ;
         inAction       = false;
         isDead         = false;
-        //gameController = GameController.gameController ;
-        CurrentState   = States.Idle                   ;
         ground         = LayerMask.GetMask("Ground")   ;
         _MyTransform   = transform                     ;
+
         //Estado Inicial
         stateMachine.ChangeState(new IdleState(this))  ;
         CurrentState   = States.Idle;
@@ -103,17 +97,9 @@ public class PlayerStatesController : MonoBehaviour
 
     public bool inground(){   return Physics.CheckBox(feet_pos.position, new Vector3(.15f, .5f, 0.15f), Quaternion.identity, ground); }
 
-    // public void ControllerSword(bool value)
-    // {
-    //     Sword.SetActive(value)   ; //Ativar Espada da Mao
-    //     Sheath.SetActive(!value) ; //Desativar Espada da Bainha
-    // }
-
     //public void ParticleSwordEffect()   =>  _swordParticleEffect.Play();
 
     //public bool  DustActive()       {   return (CurrentState == States.Walk || CurrentState == States.Sprint);       }
-
-    //public float getValueMovement() {   return  100 + 3 * gameController.getSkill(0);                                }
 
     public void ActionsInputs()
     {
@@ -137,10 +123,8 @@ public class PlayerStatesController : MonoBehaviour
         {
             if(auxContador)
             {
-                //gameController.addMorte();
                 auxContador = false;
             }
-            //FadeController.controle = 1;
         }
     }
 

@@ -27,7 +27,7 @@ public class MovementState : IState
         ChangeState();
 
         movementDirection   =  _playerController._InputHandler.smoothInputMovement ;
-        movementSpeed       =  _inSprint * 90                                      ;
+        movementSpeed       =  _inSprint * 50                                      ;
     }
     public void ExecuteFixedUpdate()
     { 
@@ -68,7 +68,7 @@ public class MovementState : IState
             {
                if(_playerController.CurrentState != PlayerStatesController.States.Sprint)
                {
-                  _inSprint = 1.25f;
+                  _inSprint = 1.55f;
                   _playerController._AnimatorHandler.setAnimator(2); 
                   _playerController.CurrentState = PlayerStatesController.States.Sprint;
                   Debug.Log(_playerController.CurrentState);
@@ -78,7 +78,7 @@ public class MovementState : IState
             {
                 if(_playerController.CurrentState != PlayerStatesController.States.Walk)
                {
-                  _inSprint = .45f;
+                  _inSprint = 1f;
                   _playerController._AnimatorHandler.setAnimator(1); 
                   _playerController.CurrentState = PlayerStatesController.States.Walk;
                   Debug.Log(_playerController.CurrentState);
