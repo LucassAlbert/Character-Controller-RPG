@@ -7,7 +7,6 @@ namespace StateMachinePlayerController
         public void ExecuteFixedUpdate();
         public void Exit();
     }
-
     public class StateMachine
     {
         IState currentState;
