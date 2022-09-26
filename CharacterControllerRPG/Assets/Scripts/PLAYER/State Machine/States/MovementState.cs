@@ -11,10 +11,10 @@ public class MovementState : IState
     public MovementState(PlayerStatesController _playerController) => this._playerController = _playerController;
 
     [Header("Movement Settings")]
-    private float   movementSpeed       ;
-    private float   turnSpeed = 0.3f    ;
-    private float   _inSprint = .45f    ;
-    private Vector3 movementDirection   ;
+    private float   movementSpeed     ;
+    private float   turnSpeed = 0.3f  ;
+    private float   _inSprint = 1f    ;
+    private Vector3 movementDirection ;
 
     private int forceGravit = 2 ;
     
@@ -64,14 +64,14 @@ public class MovementState : IState
         if (_playerController.inground())//Está no chao
         {   
             forceGravit = 2 ;
-            if(_playerController._InputHandler.SprintInput())//Está Pressonando o Botao de Correr
+            if(_playerController._InputHandler.SprintInput())//Está Pressionando o Botao de Correr
             {
                if(_playerController.CurrentState != PlayerStatesController.States.Sprint)
                {
                   _inSprint = 1.55f;
                   _playerController._AnimatorHandler.setAnimator(2); 
                   _playerController.CurrentState = PlayerStatesController.States.Sprint;
-                  Debug.Log(_playerController.CurrentState);
+                  //Debug.Log(_playerController.CurrentState);
                } 
             }
             else//Não está Pressonando o Botao de Correr
@@ -81,7 +81,7 @@ public class MovementState : IState
                   _inSprint = 1f;
                   _playerController._AnimatorHandler.setAnimator(1); 
                   _playerController.CurrentState = PlayerStatesController.States.Walk;
-                  Debug.Log(_playerController.CurrentState);
+                  //Debug.Log(_playerController.CurrentState);
                } 
             }  
         }
@@ -93,8 +93,7 @@ public class MovementState : IState
               _playerController.inAction     = false ;
               _playerController.CurrentState = PlayerStatesController.States.Falling;
               _playerController._AnimatorHandler.setAnimator(4);  
-
-              Debug.Log(_playerController.CurrentState);
+              //Debug.Log(_playerController.CurrentState);
             }
         }
     } 

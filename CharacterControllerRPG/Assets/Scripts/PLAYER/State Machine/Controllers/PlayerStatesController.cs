@@ -62,15 +62,14 @@ public class PlayerStatesController : MonoBehaviour
 
     public void HandlerStates()
     {
-        if(!isDead)//Nao esta morto
+        if(!isDead)//Verificar se o personagem nao está morto
         {
-            if(inground())//Está no Chao
+            if(inground())//Verificar se o personagem nao está morto
             {
-                if(!inAction)//Não está fazendo nenhuma acão atomica
+                if(!inAction)//Não está fazendo nenhuma acão atômica 
                 {
                     ActionsInputs();
-
-                    if(inAction) return;//Verificar inAction depois dos inputs;
+                    if(inAction) return;//Sair do if se uma acao atomica foi chamada;
 
                     if(inMove)//Está se movimentando
                     {
@@ -90,16 +89,11 @@ public class PlayerStatesController : MonoBehaviour
         }
         else//Esta morto
         {
-            //_AnimatorHandler.ChangeAnimationState("Dead");
             if(CurrentState != States.Dead) stateMachine.ChangeState(new DeadState(this));
         }
     }
 
     public bool inground(){   return Physics.CheckBox(feet_pos.position, new Vector3(.15f, .5f, 0.15f), Quaternion.identity, ground); }
-
-    //public void ParticleSwordEffect()   =>  _swordParticleEffect.Play();
-
-    //public bool  DustActive()       {   return (CurrentState == States.Walk || CurrentState == States.Sprint);       }
 
     public void ActionsInputs()
     {
@@ -120,12 +114,7 @@ public class PlayerStatesController : MonoBehaviour
         else            {       _timerDead  = 0              ;      }
 
         if(_timerDead >= .85f)
-        {
-            if(auxContador)
-            {
-                auxContador = false;
-            }
-        }
+            isDead = true;
     }
 
     #region ---------- Debug ----------
