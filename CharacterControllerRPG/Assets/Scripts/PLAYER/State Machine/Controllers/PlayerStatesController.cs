@@ -21,8 +21,7 @@ public class PlayerStatesController : MonoBehaviour
 
     [SerializeField] private Transform feet_pos;
     [SerializeField] private LayerMask ground;
-    private float _timerDead ;
-    private bool  auxContador;
+                     private float     _timerDead ;
 
     [SerializeField] public bool inAction;
     [SerializeField] public bool inGround;
@@ -36,7 +35,6 @@ public class PlayerStatesController : MonoBehaviour
         Application.targetFrameRate = 60;
 
         _timerDead     = 0.0f ;
-        auxContador    = true ;
         inAction       = false;
         isDead         = false;
         ground         = LayerMask.GetMask("Ground")   ;
@@ -118,7 +116,7 @@ public class PlayerStatesController : MonoBehaviour
     }
 
     #region ---------- Debug ----------
-    void OnDrawGizmos()//desenha o inground(box de colisao)
+    void OnDrawGizmos()
     {
         if(inground())  {   Gizmos.color = Color.green;   }
         else            {   Gizmos.color = Color.red;     }
