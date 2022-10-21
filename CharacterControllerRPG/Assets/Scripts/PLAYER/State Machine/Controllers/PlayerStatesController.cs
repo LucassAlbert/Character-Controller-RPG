@@ -71,8 +71,16 @@ public class PlayerStatesController : MonoBehaviour
 
                     if(inMove)//Está se movimentando
                     {
-                        if(CurrentState != States.Walk && CurrentState != States.Sprint)
-                            stateMachine.ChangeState(new MovementState(this));
+                        if(_InputHandler.SprintInput())//Esta apertando o botao para correr
+                        {   
+                            if(CurrentState != States.Sprint)
+                                stateMachine.ChangeState(SprintState.GetSprintState(this));
+                        }  
+                        else
+                        {
+                            if(CurrentState != States.Walk )
+                                stateMachine.ChangeState(WalkState.GetWalkState(this));
+                        }
                     }
                     else
                     {
@@ -82,7 +90,7 @@ public class PlayerStatesController : MonoBehaviour
             }
             else //Não está no Chao
             {
-                if(CurrentState != States.Falling) stateMachine.ChangeState(new MovementState(this));
+                if(CurrentState != States.Falling) stateMachine.ChangeState(FallingState.GetFallingState(this));
             }
         }
         else//Esta morto
