@@ -39,7 +39,7 @@ public class RollingState : IState
     
     public void ExecuteFixedUpdate(){   if(_timer > 0.15f && _timer < 0.75f ) MoveThePlayer();     }    
    
-    public void Exit() { /*Content*/ }
+    public void Exit() { _playerController.inAction = false; }
 
     void MoveThePlayer()
     {
