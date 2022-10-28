@@ -6,12 +6,15 @@ using StateMachinePlayerController;
 
 public class DeadState : IState
 {
-    #region --------------- Variables ---------------
-
     private PlayerStatesController _playerController;
     public DeadState(PlayerStatesController _playerController) => this._playerController = _playerController;
     
-    #endregion
+    public static DeadState Instance ;
+
+    public static DeadState GetDeadState(PlayerStatesController _playerController)
+    {
+        if(Instance == null){   return new DeadState(_playerController);    } else {    return Instance;    }
+    }
 
     public void Enter()
     {

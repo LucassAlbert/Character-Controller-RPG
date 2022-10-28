@@ -2,10 +2,15 @@ using StateMachinePlayerController;
 
 public class IdleState : IState
 {
-    #region --------------- Variables ---------------
     private PlayerStatesController _playerController;
     public IdleState(PlayerStatesController _playerController) => this._playerController = _playerController;
-    #endregion
+
+    public static IdleState Instance ;
+
+    public static IdleState GetIdleState(PlayerStatesController _playerController)
+    {
+        if(Instance == null){   return new IdleState(_playerController);    } else {    return Instance;    }
+    }
 
     public void Enter()
     {

@@ -84,7 +84,7 @@ public class PlayerStatesController : MonoBehaviour
                     }
                     else
                     {
-                        if(CurrentState != States.Idle) stateMachine.ChangeState(new IdleState(this));
+                        if(CurrentState != States.Idle) stateMachine.ChangeState(IdleState.GetIdleState(this));
                     }
                 }
             }
@@ -95,7 +95,7 @@ public class PlayerStatesController : MonoBehaviour
         }
         else//Esta morto
         {
-            if(CurrentState != States.Dead) stateMachine.ChangeState(new DeadState(this));
+            if(CurrentState != States.Dead) stateMachine.ChangeState(DeadState.GetDeadState(this));
         }
     }
 
