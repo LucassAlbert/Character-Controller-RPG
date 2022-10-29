@@ -60,18 +60,18 @@ public class PlayerStatesController : MonoBehaviour
 
     public void HandlerStates()
     {
-        if(!isDead)//Verificar se o personagem nao está morto
+        if(!isDead)
         {
-            if(inground())//Verificar se o personagem nao está morto
+            if(inground())
             {
-                if(!inAction)//Não está fazendo nenhuma acão atômica 
+                if(!inAction)
                 {
                     ActionsInputs();
-                    if(inAction) return;//Sair do if se uma acao atomica foi chamada;
+                    if(inAction) return;
 
-                    if(inMove)//Está se movimentando
+                    if(inMove)
                     {
-                        if(_InputHandler.SprintInput())//Esta apertando o botao para correr
+                        if(_InputHandler.SprintInput())
                         {   
                             if(CurrentState != States.Sprint)
                                 stateMachine.ChangeState(SprintState.GetSprintState(this));
@@ -88,12 +88,12 @@ public class PlayerStatesController : MonoBehaviour
                     }
                 }
             }
-            else //Não está no Chao
+            else 
             {
                 if(CurrentState != States.Falling) stateMachine.ChangeState(FallingState.GetFallingState(this));
             }
         }
-        else//Esta morto
+        else
         {
             if(CurrentState != States.Dead) stateMachine.ChangeState(DeadState.GetDeadState(this));
         }
