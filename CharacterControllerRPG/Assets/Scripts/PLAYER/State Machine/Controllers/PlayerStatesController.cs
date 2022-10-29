@@ -71,32 +71,20 @@ public class PlayerStatesController : MonoBehaviour
 
                     if(inMove)
                     {
-                        if(_InputHandler.SprintInput())
-                        {   
-                            if(CurrentState != States.Sprint)
-                                stateMachine.ChangeState(SprintState.GetSprintState(this));
-                        }  
+                        if(_InputHandler.SprintInput())   
+                            if(CurrentState != States.Sprint) stateMachine.ChangeState(SprintState.GetSprintState(this));
                         else
-                        {
-                            if(CurrentState != States.Walk )
-                                stateMachine.ChangeState(WalkState.GetWalkState(this));
-                        }
+                            if(CurrentState != States.Walk) stateMachine.ChangeState(WalkState.GetWalkState(this));
                     }
                     else
-                    {
                         if(CurrentState != States.Idle) stateMachine.ChangeState(IdleState.GetIdleState(this));
-                    }
                 }
             }
             else 
-            {
                 if(CurrentState != States.Falling) stateMachine.ChangeState(FallingState.GetFallingState(this));
-            }
         }
         else
-        {
-            if(CurrentState != States.Dead) stateMachine.ChangeState(DeadState.GetDeadState(this));
-        }
+            if(CurrentState != States.Dead) stateMachine.ChangeState(DeadState.GetDeadState(this));     
     }
 
     public bool inground(){   return Physics.CheckBox(feet_pos.position, new Vector3(.15f, .5f, 0.15f), Quaternion.identity, ground); }
