@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    #region --------------- Variables ---------------
-
     private PlayerStatesController _playerController;
     public AttackState(PlayerStatesController _playerController) => this._playerController = _playerController;
 
@@ -15,7 +13,12 @@ public class AttackState : IState
     private int     _forceGravit;
     private float   _timer;
 
-    #endregion
+    public static AttackState Instance;
+
+    public static AttackState GetAttackState(PlayerStatesController _playerController)
+    {
+        if(Instance == null){   return new AttackState(_playerController);    } else {    return Instance;    }
+    }
 
     public void Enter()
     {

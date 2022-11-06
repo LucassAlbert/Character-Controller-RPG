@@ -41,7 +41,7 @@ public class PlayerStatesController : MonoBehaviour
         _MyTransform   = transform                     ;
 
         //Estado Inicial
-        stateMachine.ChangeState(new IdleState(this))  ;
+        stateMachine.ChangeState(IdleState.GetIdleState(this));
         CurrentState   = States.Idle;
     }
 
@@ -92,13 +92,13 @@ public class PlayerStatesController : MonoBehaviour
     public void ActionsInputs()
     {
         if( _InputHandler.RollingInput())//Botao "X" Rolar
-            if(CurrentState != States.Rolling)  stateMachine.ChangeState(new RollingState(this));
+            if(CurrentState != States.Rolling)  stateMachine.ChangeState( RollingState.GetRollingState(this));
 
         if( _InputHandler.AttackInput())//Botao "B" Atacar
-             if(CurrentState != States.Attack)  stateMachine.ChangeState(new AttackState(this));
+             if(CurrentState != States.Attack)  stateMachine.ChangeState( AttackState.GetAttackState(this));
 
         if( _InputHandler.BlockInput())//Botao "Y" Bloquear
-             if(CurrentState != States.Block)  stateMachine.ChangeState(new BlockState(this));
+             if(CurrentState != States.Block)   stateMachine.ChangeState( BlockState.GetBlockState(this));
     }
 
     private void CallDeadState()
@@ -117,7 +117,7 @@ public class PlayerStatesController : MonoBehaviour
         if(inground())  {   Gizmos.color = Color.green;   }
         else            {   Gizmos.color = Color.red;     }
         
-        //Desenhar colisão que fica de baixo do jogador;
+        //Draw Cube
         Gizmos.DrawCube(feet_pos.position, new Vector3(.15f, .5f, 0.15f));
     }
     #endregion

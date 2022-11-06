@@ -5,8 +5,6 @@ using StateMachinePlayerController;
 
 public class RollingState : IState
 {
-    #region --------------- Variables ---------------
-
     private PlayerStatesController _playerController;
     public RollingState(PlayerStatesController _playerController) => this._playerController = _playerController;
 
@@ -15,7 +13,12 @@ public class RollingState : IState
 
     private float _timer;
     
-    #endregion
+    public static RollingState Instance ;
+
+    public static RollingState GetRollingState(PlayerStatesController _playerController)
+    {
+        if(Instance == null){   return new RollingState(_playerController);    } else {    return Instance;    }
+    }
 
     public void Enter()
     {
@@ -26,7 +29,7 @@ public class RollingState : IState
         _timer = 0.0f;
         _playerController._AnimatorHandler.setAnimator(5); 
 
-        //Controle de Direcao 
+        //Get Direction Inputs
         _movementDirection   = _playerController._InputHandler.smoothInputMovement;
     }
     
@@ -39,7 +42,7 @@ public class RollingState : IState
     
     public void ExecuteFixedUpdate(){   if(_timer > 0.15f && _timer < 0.75f ) MoveThePlayer();     }    
    
-    public void Exit() { _playerController.inAction = false; }
+    public void Exit() { /* _playerController.inAction = false; */ }
 
     void MoveThePlayer()
     {

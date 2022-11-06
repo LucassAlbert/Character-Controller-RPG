@@ -6,14 +6,17 @@ using StateMachinePlayerController;
 
 public class BlockState : IState
 {
-    #region --------------- Variables ---------------
-
     private PlayerStatesController _playerController;
     public BlockState(PlayerStatesController _playerController) => this._playerController = _playerController;
 
     private float _timer;
 
-    #endregion
+    public static BlockState Instance ;
+
+    public static BlockState GetBlockState(PlayerStatesController _playerController)
+    {
+        if(Instance == null){   return new BlockState(_playerController);    } else {    return Instance;    }
+    }
 
     public void Enter()
     {

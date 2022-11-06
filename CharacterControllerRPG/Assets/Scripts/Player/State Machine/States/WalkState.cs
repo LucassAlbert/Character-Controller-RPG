@@ -12,8 +12,8 @@ public class WalkState : MovementState
     public override void SetParameters()
 	{
         _inSprint       = 1;
-        _forceGravit    = 2 ;
-        _movementSpeed  =  _inSprint * 50                                      ;
+        _forceGravit    = 2;
+        _movementSpeed  =  _inSprint * 50;
         _playerController._AnimatorHandler.setAnimator(1); 
         _playerController.CurrentState = PlayerStatesController.States.Walk;
 	}
