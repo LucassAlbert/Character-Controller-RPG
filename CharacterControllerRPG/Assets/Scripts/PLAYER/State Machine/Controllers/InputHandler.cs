@@ -15,7 +15,7 @@ public class InputHandler : MonoBehaviour
     public  float   horizontal      ;
     public  float   vertical        ;
     public  float   moveAmount      ; 
-    public  float   distaceAnalogic ;
+    //public  float   distaceAnalogic ;
 
     public  Vector3 smoothInputMovement;
     private Vector2 value;
@@ -57,7 +57,7 @@ public class InputHandler : MonoBehaviour
         direction           = new Vector3(horizontal,0,vertical);
         smoothInputMovement = Vector3.Lerp(smoothInputMovement, direction, delta * movementSmoothingSpeed);
 
-        distaceAnalogic = Mathf.Clamp(Vector2.Distance(Vector2.zero, new Vector2(horizontal,vertical)),0.7f,1);
+        //distaceAnalogic = Mathf.Clamp(Vector2.Distance(Vector2.zero, new Vector2(horizontal,vertical)),0.7f,1);
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal)+Mathf.Abs(vertical));
     }
     public void SettingsCamera()

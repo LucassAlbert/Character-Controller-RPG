@@ -9,7 +9,6 @@ public class RollingState : IState
     public RollingState(PlayerStatesController _playerController) => this._playerController = _playerController;
 
     private Vector3 _movementDirection;
-    private int forceGravit;
 
     private float _timer;
     
@@ -36,13 +35,11 @@ public class RollingState : IState
     public void ExecuteUpdate()
     { 
         Timer(.9f);
-        //Controlle de Gravidade
-        //forceGravit = (_playerController.inground()) ? 2 : 12;
     }      
     
     public void ExecuteFixedUpdate(){   if(_timer > 0.15f && _timer < 0.75f ) MoveThePlayer();     }    
    
-    public void Exit() { /* _playerController.inAction = false; */ }
+    public void Exit() {  _playerController.inAction = false;  }
 
     void MoveThePlayer()
     {

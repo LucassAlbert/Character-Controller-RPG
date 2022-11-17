@@ -72,9 +72,13 @@ public class PlayerStatesController : MonoBehaviour
                     if(inMove)
                     {
                         if(_InputHandler.SprintInput())   
-                            if(CurrentState != States.Sprint) stateMachine.ChangeState(SprintState.GetSprintState(this));
+                        {
+                            if(CurrentState != States.Sprint) 
+                                stateMachine.ChangeState(SprintState.GetSprintState(this));
+                        }
                         else
-                            if(CurrentState != States.Walk) stateMachine.ChangeState(WalkState.GetWalkState(this));
+                            if(CurrentState != States.Walk) 
+                                stateMachine.ChangeState(WalkState.GetWalkState(this));
                     }
                     else
                         if(CurrentState != States.Idle) stateMachine.ChangeState(IdleState.GetIdleState(this));
